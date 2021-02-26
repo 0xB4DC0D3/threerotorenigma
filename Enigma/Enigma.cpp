@@ -67,6 +67,8 @@ ThreeRotorEnigma::ThreeRotorEnigma(
 
 std::string ThreeRotorEnigma::encrypt_message(std::string msg) const {
     std::transform(msg.begin(), msg.end(), msg.begin(), std::toupper);
+    msg.erase(std::remove_if(msg.begin(), msg.end(), [](auto x) { return std::isspace(x); }), msg.end());
+    std::cout << "msg = " << msg << std::endl;
     std::set<std::string> plug_panel{ this->plug_panel };
     array_3d rotors_positions{ this->rotors_positions };
     array_3d rotors_settings{ this->rotors_settings };
